@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>T Euraisa Learning</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root{color-scheme:light;--bg:#fff;--card:#fff;--tint:#faf5f5;--ink:#1f1a1b;--mut:#5a4f51;--line:#e3d8d9;--acc:#8b1a2b;--acc-ink:#fff;--btn:#8b1a2b;--btn-ink:#fff;--ok:#166534;--bad:#b91c1c;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:light}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#170c0e;--card:#231316;--tint:#2a1a1d;--ink:#f6eeee;--mut:#cdbcbc;--line:#4a2a2f;--acc:#ff8a98;--acc-ink:#170c0e;--btn:#ff8a98;--btn-ink:#170c0e;--ok:#86efac;--bad:#fca5a5}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.65 Inter,system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+h1{font-size:34px;line-height:1.2;margin:8px 0 16px}
+h2{font-size:23px;line-height:1.3;margin:28px 0 10px}
+p{margin:0 0 14px}
+a{color:var(--acc)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:8;background:var(--bg);border-bottom:1px solid var(--line)}
+.hb{max-width:960px;margin:auto;padding:10px 20px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.lg{font-weight:700;font-size:21px;color:var(--ink);text-decoration:none;margin-right:auto}
+.hn{display:flex;gap:4px;flex-wrap:wrap}
+.hn a{padding:10px 14px;color:var(--ink);text-decoration:none;border-bottom:3px solid transparent}
+.hn a.on{border-color:var(--acc);font-weight:700}
+.app{max-width:960px;margin:auto;padding:16px 20px 120px;min-height:70vh}
+.btn{display:inline-block;border:2px solid var(--btn);background:var(--btn);color:var(--btn-ink);border-radius:10px;padding:12px 22px;min-height:52px;font:600 17px Inter,system-ui,sans-serif;text-decoration:none;cursor:pointer;text-align:center}
+.btn.alt{background:transparent;color:var(--acc);border-color:var(--acc)}
+.card{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:20px;margin-bottom:16px}
+.card h2{margin-top:0}
+.mut{color:var(--mut)}
+.back{display:inline-block;margin-bottom:6px;font-size:18px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.tile{display:flex;align-items:center;min-height:84px;padding:16px 20px;border:2px solid var(--line);background:var(--bg);border-radius:12px;color:var(--ink);text-decoration:none;font-weight:700;font-size:20px}
+.tile:hover{border-color:var(--acc)}
+.list a,.list .it{display:block;padding:16px 4px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.list a b{display:block;font-size:20px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+.bar{display:flex;align-items:center;gap:10px;margin-top:6px}
+.bar span{flex:1;height:12px;background:var(--line);border-radius:6px;overflow:hidden}
+.bar span i{display:block;height:100%;background:var(--acc)}
+.bar em{font-style:normal;font-weight:700;min-width:48px;text-align:right}
+.step{display:flex;gap:16px;align-items:flex-start;margin-bottom:14px}
+.step b{flex:none;width:44px;height:44px;border-radius:50%;background:var(--acc);color:var(--acc-ink);display:grid;place-items:center;font-size:20px}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--bg);border-top:2px solid var(--line);padding:0 0 env(safe-area-inset-bottom,0px);z-index:6}
+nav a{flex:1;text-align:center;padding:16px 2px;color:var(--ink);text-decoration:none;font-size:16px;border-top:4px solid transparent;margin-top:-2px}
+nav a.on{border-color:var(--acc);font-weight:700;color:var(--acc)}
+label{display:block;font-weight:700;margin:16px 0 6px}
+input,textarea,select{width:100%;padding:12px 14px;min-height:52px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit}
+textarea{min-height:100px}
+.msgs{display:flex;flex-direction:column;gap:10px;min-height:220px;max-height:46vh;overflow:auto;margin-bottom:12px}
+.m{padding:12px 16px;border-radius:12px;max-width:90%}
+.m.u{align-self:flex-end;background:var(--acc);color:var(--acc-ink)}.m.b{background:var(--bg);border:1px solid var(--line)}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.chip{border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:24px;padding:10px 16px;font:inherit;font-size:17px;cursor:pointer}
+.opt{display:block;width:100%;text-align:left;margin:10px 0;padding:14px 16px;min-height:52px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;cursor:pointer}
+.opt.ok{border-color:var(--ok);font-weight:700}.opt.no{border-color:var(--bad)}
+.paper{background:#fff;color:#1b1b1b;border:1px solid var(--line);padding:24px;margin-top:16px;font-size:17px;line-height:1.5}
+.paper h3{margin:0;font-size:26px}.paper h4{margin:14px 0 4px;border-bottom:2px solid var(--rc,#14264b);color:var(--rc,#14264b)}
+.paper.t2{font-family:Georgia,serif;--rc:#7c2d12}.paper.t3{--rc:#8b1a2b}
+.row{display:flex;gap:12px;align-items:center}.row input{flex:1}
+.pill{padding:2px 12px;border:1px solid var(--line);border-radius:14px;font-size:16px}
+details{border-bottom:1px solid var(--line);padding:14px 0}summary{cursor:pointer;font-weight:700}
+table{border-collapse:collapse;width:100%}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+.scroll{overflow-x:auto}
+.foot{max-width:960px;margin:0 auto;padding:24px 20px 40px;color:var(--mut);font-size:16px;border-top:1px solid var(--line)}
+@media(min-width:701px){
+nav{position:static;max-width:960px;margin:0 auto;padding:6px 20px 0;border-top:0;gap:4px}
+nav a{flex:none;padding:12px 18px;border-top:0;border-bottom:4px solid transparent;margin:0}
+nav a.on{border-bottom-color:var(--acc)}
+.app{padding-bottom:40px}
+}
+@media(max-width:700px){h1{font-size:30px}.cols{grid-template-columns:1fr}.hn a{padding:8px 10px}.foot{padding-bottom:110px}}
+.pb{position:sticky;top:env(safe-area-inset-top,0px);z-index:8;background:var(--bg);border-bottom:1px solid var(--line)}.pb .lg{margin-right:auto}
+h1,h2,h3,.lg{font-family:"Space Grotesk",Inter,system-ui,sans-serif;font-weight:600;letter-spacing:-.02em}
+body::before{background:var(--card)}
+header,.pb{background:var(--card);border-top:4px solid #8b1a2b;border-bottom:1px solid var(--line)}
+.lg{color:var(--acc)}
+.hn a,.pb a{color:var(--ink)}
+.hn a.on{border-color:var(--acc)}
+
+.tile,.chip,.opt,input,textarea,select,.m.b{background:var(--card)}
+.hero{display:grid;grid-template-columns:1.15fr 1fr;gap:40px;align-items:start;padding:16px 0 24px}
+.hh{font-size:clamp(36px,5.5vw,60px);line-height:1.08;margin:8px 0 18px}
+.panel{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--acc);padding:22px}
+.panel h3{margin:0 0 8px;font-size:24px}
+.pr{display:flex;gap:18px;padding:12px 0;border-bottom:1px solid var(--line)}.pr:last-child{border:0}.pr b{color:var(--acc);font-size:22px;width:20px}
+@media(max-width:700px){.hero{grid-template-columns:1fr}}
+.hb,.app,.foot{max-width:none;padding-left:clamp(20px,4vw,72px);padding-right:clamp(20px,4vw,72px)}
+@media(min-width:701px){nav{max-width:none;padding-left:clamp(20px,4vw,72px);padding-right:clamp(20px,4vw,72px)}}
+@media(min-width:1200px){.cols{grid-template-columns:repeat(3,1fr)}}
+.hero{background:linear-gradient(120deg,#5e0d19,#9b1b2c);padding:56px clamp(20px,4vw,56px);color:#fff;align-items:center}
+.hh{color:#fff}.hero .mut{color:#f5dede}
+.hero .btn{background:#fff;color:#8b1a2b;border-color:#fff}
+.hero a:not(.btn){color:#fff}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;background:var(--tint);padding:28px clamp(20px,4vw,56px);margin-bottom:8px}
+.stats div{border-left:1px solid var(--line);padding-left:20px;color:var(--mut)}
+.stats b{display:block;font:600 44px "Space Grotesk",Inter,sans-serif;font-variant-numeric:tabular-nums;color:var(--acc)}
+.app>h2::before{content:"";display:block;width:44px;height:3px;background:var(--acc);margin-bottom:12px}
+.panel,.panel h3,.panel .pr{color:var(--ink)}
+.panel .pr b{color:var(--acc)}
+.btn.tg{border-radius:999px;border:2px solid var(--line);background:var(--tint);color:var(--ink);font-weight:500}
+.btn.tg:hover{border-color:var(--acc)}
+.btn.tg{min-height:34px!important;padding:3px 12px!important;font-size:15px!important}
+@media(prefers-reduced-motion:no-preference){
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes slideL{from{opacity:0;transform:translateX(-32px)}to{opacity:1;transform:none}}
+@keyframes slideR{from{opacity:0;transform:translateX(32px)}to{opacity:1;transform:none}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes pop{from{opacity:0;transform:scale(.94) translateY(6px)}to{opacity:1;transform:none}}
+#app.enter>*{animation:rise .55s ease-out both}
+#app.enter>*:nth-child(2){animation-delay:.07s}#app.enter>*:nth-child(3){animation-delay:.14s}#app.enter>*:nth-child(4){animation-delay:.21s}#app.enter>*:nth-child(5){animation-delay:.28s}#app.enter>*:nth-child(n+6){animation-delay:.35s}
+#app.enter>.hero{animation:none}
+#app.enter .hero>div:first-child{animation:slideL .7s ease-out both}
+#app.enter .hero .panel{animation:slideR .7s .1s ease-out both}
+#app.enter .panel .pr{animation:rise .5s ease-out both}
+#app.enter .pr:nth-child(2){animation-delay:.3s}#app.enter .pr:nth-child(3){animation-delay:.38s}#app.enter .pr:nth-child(4){animation-delay:.46s}#app.enter .pr:nth-child(5){animation-delay:.54s}#app.enter .pr:nth-child(6){animation-delay:.62s}#app.enter .pr:nth-child(7){animation-delay:.7s}
+#app.enter .tiles>*,#app.enter .list>*{animation:rise .5s ease-out both}
+#app.enter .tiles>*:nth-child(2),#app.enter .list>*:nth-child(2){animation-delay:.08s}#app.enter .tiles>*:nth-child(3),#app.enter .list>*:nth-child(3){animation-delay:.16s}#app.enter .tiles>*:nth-child(4),#app.enter .list>*:nth-child(4){animation-delay:.24s}#app.enter .tiles>*:nth-child(n+5),#app.enter .list>*:nth-child(n+5){animation-delay:.32s}
+.bar span i{transform-origin:left;animation:grow .9s ease-out both}
+.m{animation:pop .3s ease-out}
+.btn,.tile,.opt,.chip{transition:transform .18s ease,box-shadow .18s ease,border-color .2s ease}
+.btn:hover,.tile:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(139,26,43,.18)}
+.btn:active,.tile:active{transform:scale(.97)}
+.opt:hover,.chip:hover{transform:translateX(4px)}
+.list a{transition:padding-left .2s ease}.list a:hover{padding-left:14px}
+.hn a,nav a{transition:border-color .25s ease,color .25s ease}
+body,header,.pb,.panel,input,textarea,select{transition:background-color .35s ease,color .35s ease,border-color .35s ease}
+}
+@media(prefers-reduced-motion:no-preference){
+@keyframes flow{from{background-position:0% 50%}to{background-position:100% 50%}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(255,255,255,.55)}70%{box-shadow:0 0 0 14px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.1);opacity:1}}
+@keyframes dot{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-6px);opacity:1}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+@keyframes drop{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+.hero{position:relative;overflow:hidden;background-size:200% 200%;animation:flow 14s ease-in-out infinite alternate}
+.hero>*{position:relative;z-index:1}
+.hero::after{content:"";position:absolute;right:-140px;top:50%;width:520px;height:520px;margin-top:-260px;border-radius:50%;border:1px solid rgba(255,255,255,.22);box-shadow:0 0 0 70px rgba(255,255,255,.04),0 0 0 140px rgba(255,255,255,.03);pointer-events:none;animation:breathe 6s ease-in-out infinite}
+.panel{animation:bob 6s ease-in-out infinite}
+.hero .btn{animation:ring 2.4s ease-out infinite}
+#app .rv{opacity:0;transform:translateY(26px);animation:none!important;transition:opacity .6s ease,transform .6s ease}
+#app .rv.in{opacity:1;transform:none}
+.app>h2::before{transform-origin:left;animation:grow .8s ease-out both}
+.typ{display:flex;gap:5px;padding:14px 16px}.typ i{width:8px;height:8px;border-radius:50%;background:var(--mut);animation:dot 1s infinite}.typ i:nth-child(2){animation-delay:.15s}.typ i:nth-child(3){animation-delay:.3s}
+.opt.ok{animation:pop .45s ease-out}.opt.no{animation:shake .4s ease-out}
+.pill{animation:pop .45s ease-out}
+.lg{display:inline-block;transition:transform .2s ease}.lg:hover{transform:scale(1.04)}
+header,.pb{animation:drop .5s ease-out}
+.card,.stats div{transition:transform .2s ease,box-shadow .2s ease}
+.tiles>.card:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(139,26,43,.14)}
+}
+#sp{position:fixed;top:env(safe-area-inset-top,0px);left:0;width:100%;height:4px;background:#f2a20a;transform-origin:left;transform:scaleX(0);z-index:20;pointer-events:none}
+.mq{overflow:hidden;border-bottom:1px solid var(--line);padding:16px 0;margin-bottom:8px}
+.mt{display:flex;gap:48px;width:max-content}
+.mt span{white-space:nowrap;color:var(--mut);font-weight:500}.mt span::after{content:"•";color:var(--acc);margin-left:48px}
+.btn,.tile{position:relative;overflow:hidden}
+.tile::after,.btn::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;transform:skewX(-20deg);pointer-events:none}
+.btn::after{background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent)}
+.tile::after{background:linear-gradient(100deg,transparent,rgba(139,26,43,.12),transparent)}
+.bar span i{position:relative;overflow:hidden}
+.bar span i::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);transform:translateX(-100%)}
+input:focus,textarea:focus,select:focus{box-shadow:0 0 0 4px rgba(139,26,43,.18);border-color:var(--acc);outline:0}
+@media(prefers-reduced-motion:no-preference){
+@keyframes wordUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes scroll{to{transform:translateX(-50%)}}
+@keyframes shine{to{left:130%}}
+@keyframes sweep{to{transform:translateX(100%)}}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,-30px)}}
+@keyframes ringR{0%{box-shadow:0 0 0 0 rgba(139,26,43,.45)}70%{box-shadow:0 0 0 12px rgba(139,26,43,0)}100%{box-shadow:0 0 0 0 rgba(139,26,43,0)}}
+.hh .w{display:inline-block;animation:wordUp .7s calc(.12s*var(--i)) ease-out both}
+.mt{animation:scroll 45s linear infinite}.mq:hover .mt{animation-play-state:paused}
+.btn:hover::after,.tile:hover::after{animation:shine .7s ease}
+.bar span i::after{animation:sweep 2.4s 1s ease-in-out infinite}
+.hero::before{content:"";position:absolute;left:-60px;bottom:-80px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.05);pointer-events:none;animation:drift 9s ease-in-out infinite}
+.step b{animation:ringR 3s ease-out infinite}
+.it .btn{animation:ringR 2.4s ease-out infinite}
+.hn a{background:linear-gradient(var(--acc),var(--acc)) no-repeat 50% 100%/0 3px;transition:border-color .25s ease,color .25s ease,background-size .25s ease}
+.hn a:hover{background-size:100% 3px}
+nav a:active{transform:scale(.92)}
+#ft>.it{animation:rise .45s ease-out}
+}
+.skip{position:absolute;left:-999px;top:8px;background:#000;color:#fff;padding:10px 16px;z-index:50;border-radius:8px}.skip:focus{left:8px}
+body{background-image:radial-gradient(rgba(139,26,43,.07) 1px,transparent 1px);background-size:26px 26px;background-attachment:fixed}
+:root[data-theme="dark"] body{background-image:radial-gradient(rgba(255,138,152,.08) 1px,transparent 1px)}
+header,.pb{background:color-mix(in srgb,var(--card) 82%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.hero{border-radius:24px;margin-top:8px;padding:64px clamp(20px,4vw,64px);background:radial-gradient(520px circle at var(--mx,72%) var(--my,28%),rgba(255,70,95,.30),transparent 62%),radial-gradient(900px 420px at 90% 0%,rgba(194,16,46,.55),transparent 62%),radial-gradient(700px 380px at 0% 100%,rgba(120,12,30,.6),transparent 62%),linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px) 0 0/52px 52px,linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px) 0 0/52px 52px,#0a0a0f;background-size:auto,auto,auto,52px 52px,52px 52px;animation:gridmove 24s linear infinite}
+.hh{font-weight:700;letter-spacing:-.035em}
+.eye{display:inline-flex;gap:10px;align-items:center;padding:6px 16px;border:1px solid rgba(255,255,255,.28);border-radius:999px;font:500 13px "Space Grotesk",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(255,255,255,.07);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);margin-bottom:20px}
+.eye::before{display:none}
+.hero .panel{background:rgba(255,255,255,.08);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.22);border-radius:20px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.hero .panel,.hero .panel h3,.hero .panel .pr{color:#fff}
+.hero .panel .pr{border-color:rgba(255,255,255,.16)}.hero .panel .pr b{color:#ff7a8d}
+.btn:not(.alt):not(.tg){background:linear-gradient(135deg,#9b1b2c,#d1213d);border-color:transparent;color:#fff;box-shadow:0 6px 18px rgba(194,16,46,.28)}
+.btn:not(.alt):not(.tg):hover{box-shadow:0 10px 28px rgba(194,16,46,.45)}
+.hero .btn:not(.alt){box-shadow:0 0 26px rgba(255,59,87,.5)}
+.card,.tile{border-radius:16px}.opt{border-radius:12px}
+.tiles>.card{position:relative;overflow:hidden}
+.tile::before,.tiles>.card::before{content:"";position:absolute;inset:0;background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),rgba(194,16,46,.13),transparent 70%);opacity:0;transition:opacity .25s;pointer-events:none}
+.tile:hover::before,.tiles>.card:hover::before{opacity:1}
+.tile:hover{border-color:var(--acc)}
+.app>h2::before{width:64px;height:3px;background:linear-gradient(90deg,var(--acc),transparent)}
+.stats{border-radius:20px}
+.mq{-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+@media(prefers-reduced-motion:no-preference){
+@keyframes gridmove{from{background-position:0 0,0 0,0 0,0 0,0 0}to{background-position:0 0,0 0,0 0,0 52px,52px 0}}
+@keyframes blink{50%{opacity:.3}}
+.eye::before{animation:blink 1.6s ease-in-out infinite}
+}
+.an{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:8px}.an .card{margin:0}
+.ring{display:flex;align-items:center;gap:20px}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px}.kpis .card{padding:16px}
+.kpis b{display:block;font:600 34px "Space Grotesk",Inter,sans-serif;color:var(--acc);font-variant-numeric:tabular-nums}
+.cht{display:flex;align-items:flex-end;gap:12px;height:170px;margin-bottom:36px}
+.col{position:relative;flex:1;height:100%;display:flex;align-items:flex-end}
+.col i{display:block;width:100%;background:linear-gradient(180deg,#d1213d,#9b1b2c);border-radius:8px 8px 0 0;transform-origin:bottom}
+.col span{position:absolute;left:0;right:0;bottom:-30px;text-align:center;font-size:14px;color:var(--mut)}
+.pc{display:grid;grid-template-columns:minmax(120px,1fr) 2fr;gap:12px;align-items:center;margin:12px 0;font-size:15px}
+.cn{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}.cn h2{margin:0 auto 0 0}
+.calw{display:grid;grid-template-columns:minmax(300px,560px) 1fr;gap:28px;align-items:start}
+.wk,.cg2{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.wk{margin-bottom:8px;text-align:center;color:var(--mut);font-weight:600;font-size:14px}
+.dy{position:relative;aspect-ratio:1;min-height:44px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font:inherit;font-size:17px;cursor:pointer;display:grid;place-items:center;padding:0}
+span.dy{border:0;background:none;cursor:default}
+.dy:not(span):hover{border-color:var(--acc);transform:scale(1.07)}
+.dy.today{border:2px solid var(--acc);font-weight:700}
+.dy.today::before{content:"";position:absolute;inset:-3px;border-radius:14px;border:2px solid var(--acc);opacity:0}
+.dy.sel{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
+.dy u{position:absolute;bottom:6px;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:var(--acc);text-decoration:none}
+.dy.sel u{background:var(--acc-ink)}
+@media(max-width:800px){.calw{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:no-preference){
+@keyframes growY{from{transform:scaleY(0)}}
+@keyframes pulseRing{0%{opacity:.8;transform:scale(1)}100%{opacity:0;transform:scale(1.28)}}
+@keyframes dotp{50%{transform:scale(1.6)}}
+@keyframes arcgrow{from{stroke-dashoffset:var(--L)}}
+.arc{animation:arcgrow 1.3s ease-out both}
+.col i{animation:growY .8s calc(.08s*var(--n)) ease-out both}
+.dy{transition:transform .18s ease,border-color .2s ease,background-color .2s ease}
+.dy.today::before{animation:pulseRing 2s ease-out infinite}
+.dy u{animation:dotp 1.8s ease-in-out infinite}
+.cg2.anim .dy{animation:pop .45s calc(var(--i)*.02s) ease-out both}
+.cg2.anim.dn{animation:slideR .5s ease-out}.cg2.anim.dp{animation:slideL .5s ease-out}
+.evi{animation:rise .45s calc(var(--i)*.08s) ease-out both}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#app">Skip to content</a><div id="sp"></div><header id="hd"><div class="hb"><a class="lg" href="#site">T Euraisa <span style="font-weight:400;opacity:.75">Learning</span></a>
+<div class="hn" id="hn"><a data-k="site" href="#site">Home</a><a data-k="catalog" href="#catalog">Courses</a><a data-k="resume" href="#resume">Resume</a></div>
+<button class="btn alt tg" onclick="toggleTheme()" style="min-height:46px;padding:8px 18px">Dark mode</button>
+<a class="btn" data-k="home" href="#home" style="min-height:46px;padding:8px 18px">Student portal</a></div></header>
+<div class="pb" id="pb" style="display:none"><div class="hb"><span class="lg">T Euraisa Student Portal</span><a href="#site">← Back to website</a><button class="btn alt tg" onclick="toggleTheme()" style="min-height:46px;padding:8px 18px">Dark mode</button></div></div>
+<nav id="nav" aria-label="Student portal"></nav>
+<main class="app" id="app"></main>
+<div class="foot" id="sf"><a href="#admin">Admin</a></div>
+<script>
+const $=s=>document.querySelector(s);
+const C=[["Automobile Engines and Systems","",10,0],["Basics of Material Science","",10,0],["Business Communication","",6,0],["Food Chemistry","FPL102",6,2],["Food Microbiology","FPL101",5,4],["Health and Safety","HAL108",6,3],["Introduction to Manufacturing Processes","",7,4],["Metrology","",5,0],["Professional Skills (Career Skills)","AVP207",8,2],["Professional Skills (Team Skills)","",10,8],["Responsible Citizenship","",3,0],["Science and World","",4,7],["Universal Human Values","AAL106",4,14]].map(a=>({n:a[0],code:a[1],m:a[2],p:a[3],done:0}));
+const BC=["Foundations of communication","Professional email writing","Business writing and reports","Presentation skills","Meetings and negotiation","Interview and resume communication"];
+const full=c=>c.n+(c.code?" ["+c.code+"]":"");
+const esc=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const bar=p=>`<div class="bar"><span><i style="width:${p}%"></i></span><em>${p}%</em></div>`;
+const back=(to,l)=>`<a class="back" href="#${to}">← ${l||"Back"}</a>`;
+const tabs=[["home","Home"],["courses","My Courses"],["forum","Forum"],["calendar","Calendar"],["more","More"]];
+const MORE=[["live","Live Classes"],["tests","Tests"],["leader","Leader Board"],["progress","Progress and Reports"],["library","Library"],["faqs","Questions and Answers"],["grievances","Grievances"],["stars","Stars"],["challenges","Challenges"],["upload","Upload Failed Submission"],["activities","My Activities"],["curriculum","Curriculum"],["docs","University Documents"],["password","Change Password"],["about","About Us"]];
+const events=[["Monday 16 Nov","No events today"],["Tuesday 17 Nov","Live class: Business Communication, 6:00 PM"],["Friday 20 Nov","Assignment due: Client proposal email"],["Monday 23 Nov","Test: Professional Skills (Team Skills)"],["Saturday 28 Nov","Health and Safety workshop"]];
+const quiz=[["Which greeting suits a first email to a client?",["Hey there","Dear Mr. Nair","Yo"],1],["A good email subject line is…",["Clear and specific","Left empty","All capital letters"],0],["Before replying to an angry customer you should…",["Reply instantly","Listen and acknowledge","Ignore it"],1]];
+const lead=[["Karthik R",980],["Divya M",945],["Meena S",910],["You",760],["Arun Kumar",705]];
+const faq=[["How do I join a live class?","Open Live Classes and press Join when the class starts."],["How do I get a certificate?","Finish all modules and pass the final test. The certificate is sent to you automatically."],["How do I submit an assignment?","Open the course, choose the assignment and upload your file."]];
+const tutorQA={"Explain formal email tone":"Use a formal tone with clients and seniors: a proper greeting, short clear sentences, no slang, and a polite closing.","Help me revise Module 1":"Module 1 covers the communication cycle: sender, message, channel, receiver and feedback. Would you like 3 practice questions?","How do I write a good subject line?":"Keep it short and say the purpose, for example: “Quotation for 500 units, reply needed by Friday”."};
+const CORE=[["Student management","Register, manage and track students."],["Course management","Courses with modules and lessons."],["Video and document lessons","Videos, PDFs and learning materials."],["Student dashboard","Enrolled courses and progress."],["Progress tracking","Completed lessons and course progress."],["Quizzes","Basic quizzes with automatic scores."],["Assignments","Students upload and submit their work."],["Live classes","Schedule and manage online classes."],["Notifications","Reminders for courses, classes, assignments and exams."],["Certificates","Generated after course completion."],["Instructor management","Create instructors and assign courses."],["Payments","Paid courses and student payments."],["Basic reports","Enrollments, completion, quiz scores and activity."],["Resume builder","Create and download professional resumes."],["Admin dashboard","Students, instructors, courses, content, payments and reports."]];
+const AI=[["Automated enrollment","Account and course access are created right after purchase."],["Automated learning paths","Recommends the next lesson, course or revision."],["AI tutor","Instant explanations for students, anytime."],["Automated assessments","Quizzes, practice questions and assignments generated and evaluated."],["Personalized learning","Finds weak areas and gives revision and practice."],["Automated reminders","Unfinished lessons, assignments, exams and classes."],["AI class automation","Recordings become transcripts, summaries, notes and revision questions."],["Automated certificates","Issued and delivered once criteria are met."],["Engagement automation","Inactive or behind students get reminders and support."],["AI performance analysis","Shows instructors who is struggling and who excels."],["Course recommendations","Next-course suggestions after completion."]];
+const RES=[["Auto resume from profile","Education, skills, courses, certificates and projects fill in."],["AI resume writing","Turns basic details into professional descriptions."],["Multiple templates","Designs for different industries and roles."],["Job-specific resume","Tailored to a target job description."],["ATS optimization","Checks keywords, formatting and unclear sections."],["Resume score","Clear suggestions for improvement."],["Project description generator","A simple project note becomes a structured description."],["Skills suggestions","Based on courses, projects and target role."],["Multiple versions","A different resume for each job role."],["PDF and DOCX export","One click download."],["Version history","Save, edit and restore earlier versions."]];
+const flist=a=>`<div class="list cols">${a.map(x=>`<div class="it"><b>${x[0]}</b><span class="mut">${x[1]}</span></div>`).join("")}</div>`;
+const clist=(arr,hrefs)=>`<div class="list cols">${arr.map(c=>`<a href="#course-${C.indexOf(c)}"><b>${esc(full(c))}</b><span class="mut">${c.m} modules</span>${hrefs?bar(c.p):""}</a>`).join("")}</div>`;
+let q={i:0,s:0,a:0},vers=[];
+
+function render(){
+ const h=(location.hash||"#site").slice(1),[v,arg]=h.split("-");
+ const site=["site","catalog","features","admin"].includes(v);
+ $("#nav").style.display=site?"none":"";$("#hd").style.display=site?"":"none";$("#sf").style.display=site?"":"none";$("#pb").style.display=site?"none":"";
+ $("#nav").innerHTML=tabs.map(t=>`<a href="#${t[0]}" class="${(t[0]===v||(v==="course"&&t[0]==="courses")||(v!==t[0]&&t[0]==="more"&&MORE.some(m=>m[0]===v)))?"on":""}">${t[1]}</a>`).join("");
+ document.querySelectorAll("header a[data-k]").forEach(a=>a.classList.toggle("on",a.dataset.k===(site?v:(v==="resume"?"resume":"home"))&&!a.classList.contains("btn")));
+ let o="";
+ if(v==="site"){o=`<div class="hero"><div><div class="eye">AI-powered learning · Live · Global</div><h1 class="hh">Write the email. Run the meeting. Get the job.</h1><p class="mut" style="font-size:22px">Business communication for college students, with live classes, short tests and a tutor you can ask at any hour.</p><p><a class="btn" href="#home">Open the student portal</a> <a href="#catalog" style="margin-left:14px">Browse all courses</a></p></div><div class="panel"><h3>Inside Business Communication</h3>${BC.map((b,i)=>`<div class="pr"><b>${i+1}</b>${b}</div>`).join("")}</div></div><div class="stats"><div><b>13</b>Courses</div><div><b>6</b>Modules in Business Communication</div><div><b>24/7</b>AI tutor to ask</div></div><div class="mq"><div class="mt">${[...C,...C].map(c=>`<span>${esc(c.n)}</span>`).join("")}</div></div>
+ <h2>What you get</h2><div class="tiles">${["Courses and lessons","Tests and assignments","Live classes","Certificates","AI tutor, ask anything","Resume builder"].map(t=>`<div class="card" style="margin:0"><b>${t}</b></div>`).join("")}</div>
+ <h2>How it works</h2><div class="step"><b>1</b><div><b style="width:auto;height:auto;background:none;color:inherit;display:inline;font-size:inherit">Choose a course</b><br><span class="mut">Pay once and your account is ready.</span></div></div><div class="step"><b>2</b><div><b style="width:auto;height:auto;background:none;color:inherit;display:inline;font-size:inherit">Learn at your pace</b><br><span class="mut">Watch lessons, read notes and ask the AI tutor.</span></div></div><div class="step"><b>3</b><div><b style="width:auto;height:auto;background:none;color:inherit;display:inline;font-size:inherit">Take tests</b><br><span class="mut">Get your score right away and see what to revise.</span></div></div><div class="step"><b>4</b><div><b style="width:auto;height:auto;background:none;color:inherit;display:inline;font-size:inherit">Get your certificate</b><br><span class="mut">It arrives automatically when you finish. Then build your resume.</span></div></div>`}
+ else if(v==="catalog"){o=`<h1>Courses</h1><p class="mut">${C.length} courses. Choose one to see its modules.</p>${clist(C,false)}`}
+ else if(v==="features"){o=`<h1>Features</h1><h2>Learning platform</h2>${flist(CORE)}<h2>Automatic help (AI)</h2>${flist(AI)}<h2>Resume builder</h2>${flist(RES)}`}
+ else if(v==="admin"){o=`<h1>Admin</h1><div class="tiles">${[["1,248","Students"],["14","Instructors"],["13","Courses"],["72%","Completion rate"],["₹4.8L","Revenue this month"]].map(s=>`<div class="card" style="margin:0"><b style="font-size:32px;display:block">${s[0]}</b>${s[1]}</div>`).join("")}</div><h2>Students needing attention</h2><div class="scroll"><table><thead><tr><th>Student</th><th>Course</th><th>Last active</th><th>Quiz</th><th>Status</th></tr></thead><tbody><tr><td>Arun Kumar</td><td>Business Communication</td><td>9 days ago</td><td>46%</td><td>Reminder sent</td></tr><tr><td>Meena S</td><td>Team Skills</td><td>6 days ago</td><td>55%</td><td>At risk</td></tr><tr><td>Karthik R</td><td>Career Skills</td><td>Today</td><td>94%</td><td>High performer</td></tr></tbody></table></div><p class="mut" style="margin-top:16px">Also in the admin panel: courses and content, instructors, payments and reports.</p>`}
+ else if(v==="home"){o=`<h1>Hello, Karthi</h1><div class="card"><h2>Today</h2><p>Live class: Business Communication at 6:00 PM</p><a class="btn" href="#live">Go to live classes</a></div><div class="card"><h2>Continue learning</h2><p>Business Communication, Module 1: ${BC[C[2].done]||"Done"}</p><a class="btn" href="#course-2">Continue</a></div><h2>What would you like to do?</h2><div class="tiles"><a class="tile" href="#courses">My Courses</a><a class="tile" href="#tests">Take a Test</a><a class="tile" href="#tutor">Ask the AI Tutor</a><a class="tile" href="#resume">Build My Resume</a><a class="tile" href="#progress">My Progress</a><a class="tile" href="#more">More Options</a></div>`}
+ else if(v==="courses"){o=`<h1>My Courses</h1><p class="mut">${C.length} courses</p>${ANA()}<h2>All courses</h2>${clist(C,true)}`}
+ else if(v==="course"){const c=C[+arg];o=`${back("courses","My Courses")}<h1>${esc(full(c))}</h1><p class="mut">${c.m} modules</p>${bar(c.p)}<h2>Modules</h2><div class="list">`+Array.from({length:c.m},(_,k)=>{const d=k<c.done;return `<div class="it row"><span style="flex:1"><b style="display:inline">${k+1}. ${c.n==="Business Communication"?BC[k]:"Module "+(k+1)}</b></span>${d?'<span class="pill">Done</span>':k===c.done?`<button class="btn" onclick="finish(${+arg})">Start</button>`:'<span class="mut">Next</span>'}</div>`}).join("")+`</div><p style="margin-top:20px"><a class="btn alt" href="#tutor">Ask the AI tutor</a></p>`}
+ else if(v==="forum"){o=`<h1>Forum</h1><div class="card"><label for="fp" style="margin-top:0">Ask your classmates or teacher</label><textarea id="fp"></textarea><p style="margin:12px 0 0"><button class="btn" onclick="post()">Post question</button></p></div><div id="ft" class="list">`+[["Arun","How long should a business email be?","2 replies"],["Meena","Tips for the Team Skills test?","5 replies"]].map(t=>`<div class="it"><b>${t[1]}</b><span class="mut">${t[0]} · ${t[2]}</span></div>`).join("")+`</div>`}
+ else if(v==="calendar"){o=CAL()}
+ else if(v==="more"){o=`<h1>More</h1><div class="list cols">${MORE.map(m=>`<a href="#${m[0]}"><b>${m[1]}</b></a>`).join("")}</div><p style="margin-top:20px"><button class="btn alt" onclick="this.nextElementSibling.textContent='This is a demo, so there is no login.'">Log out</button> <span class="mut"></span></p>`}
+ else if(v==="live"){o=`${back("home")}<h1>Live Classes</h1>`+[["Business Communication","Tuesday 17 Nov, 6:00 PM"],["Professional Skills (Career Skills)","Thursday 19 Nov, 5:00 PM"]].map(l=>`<div class="card"><h2>${l[0]}</h2><p class="mut">${l[1]}</p><button class="btn" onclick="this.nextElementSibling.textContent='In the full platform the class room opens here.'">Join class</button> <span class="mut"></span></div>`).join("")+`<p class="mut">Past classes will appear here with a transcript, summary and revision questions.</p>`}
+ else if(v==="tests"){const Q=quiz[q.i];o=`${back("home")}<h1>Tests</h1><div class="card"><h2 style="margin-top:0">Business Communication: quick test</h2>`+(q.i>=quiz.length?`<p><b>Your score: ${q.s} out of ${quiz.length}</b></p><p>${q.s<quiz.length?"Please revise Module 2: Professional email writing.":"Well done."}</p><button class="btn" onclick="q={i:0,s:0,a:0};render()">Try again</button>`:`<p class="mut">Question ${q.i+1} of ${quiz.length}</p><p><b>${Q[0]}</b></p>`+Q[1].map((t,k)=>`<button class="opt ${q.a?(k===Q[2]?"ok":(k===q.a-1?"no":"")):""}" onclick="ans(${k})">${t}</button>`).join("")+(q.a?`<p><button class="btn" onclick="q.i++;q.a=0;render()">Next question</button></p>`:""))+`</div>`}
+ else if(v==="leader"){o=`${back("more")}<h1>Leader Board</h1><div class="list">${lead.map((l,k)=>`<div class="it row"><b style="width:30px;display:inline">${k+1}</b><span style="flex:1;${l[0]==="You"?"font-weight:700;color:var(--acc)":""}">${l[0]}</span><b style="display:inline">${l[1]} points</b></div>`).join("")}</div>`}
+ else if(v==="progress"){o=`${back("home")}<h1>My Progress</h1><div class="card"><h2 style="margin-top:0">Overall</h2>${bar(Math.round(C.reduce((a,c)=>a+c.p,0)/C.length))}</div><h2>By course</h2>${clist(C,true)}<div class="card"><h2 style="margin-top:0">Suggested next</h2><p>Start Business Communication, Module 1. Your plan updates as you finish lessons and tests.</p></div>`}
+ else if(v==="faqs"){o=`${back("more")}<h1>Questions and Answers</h1>`+faq.map(f=>`<details><summary>${f[0]}</summary><p class="mut" style="margin-top:10px">${f[1]}</p></details>`).join("")}
+ else if(v==="tutor"){o=`${back("home")}<h1>Ask the AI Tutor</h1><div class="card"><div class="msgs" id="msgs"><div class="m b">Hello! Choose a question below or type your own.</div></div><div class="chips">${Object.keys(tutorQA).map(k=>`<button class="chip" onclick="ask(this.textContent)">${k}</button>`).join("")}</div><form onsubmit="event.preventDefault();ask($('#ti').value.trim());$('#ti').value=''" class="row"><input id="ti" placeholder="Type your question" aria-label="Your question"><button class="btn">Ask</button></form></div>`}
+ else if(v==="resume"){o=`${back("home")}<h1>Resume Builder</h1><p class="mut">Fill in the boxes. Your resume updates below.</p><div class="card"><label for="rn" style="margin-top:0">Full name</label><input id="rn" value="Karthi Madhu"><label for="rr">Job you want</label><input id="rr" value="Customer Communications Executive"><label for="rs">About you</label><textarea id="rs">Business communication student who writes clear client emails and presents with confidence.</textarea><label for="rk">Skills (separate with commas)</label><input id="rk" value="Email writing, Presentations, Client handling, MS Office, Teamwork"><label for="jd">Job advertisement (optional, to match your resume to it)</label><textarea id="jd"></textarea><label for="rt">Design</label><select id="rt"><option value="">Classic</option><option value="t2">Traditional</option><option value="t3">Modern</option></select>
+ <p style="margin-top:18px"><button class="btn" onclick="tailor()">Match to job</button> <button class="btn alt" onclick="vers.push($('#rr').value);$('#rs2').textContent='Saved versions: '+vers.length">Save version</button> <button class="btn alt" onclick="printR()">Download PDF</button></p><p><b id="sc"></b> <span id="st"></span> <span class="mut" id="rs2"></span></p></div><div class="paper" id="paper"></div>`}
+ else{const t=MORE.find(x=>x[0]===v);o=`${back("more")}<h1>${t?t[1]:"Page"}</h1><div class="card"><p>${v==="about"?"T Euraisa Business Communication learning platform, built by Gencosma Technologies.":"Nothing here yet. This section is part of the full platform and shows sample content in the prototype."}</p></div>`}
+ $("#app").innerHTML=o;window.scrollTo(0,0);
+ if(v==="resume"){document.querySelectorAll("#app input,#app textarea,#app select").forEach(e=>e.oninput=rr);rr()}
+}
+function finish(i){const c=C[i];c.done++;c.p=Math.min(100,c.p+Math.round(100/c.m));render()}
+function ans(k){if(q.a)return;q.a=k+1;if(k===quiz[q.i][2])q.s++;render()}
+function add(t,c){const d=document.createElement("div");d.className="m "+c;d.textContent=t;$("#msgs").appendChild(d);$("#msgs").scrollTop=1e5}
+function ask(x){if(!x)return;add(x,"u");const t=document.createElement("div");t.className="m b typ";t.innerHTML="<i></i><i></i><i></i>";$("#msgs").appendChild(t);$("#msgs").scrollTop=1e5;setTimeout(()=>{t.remove();add(tutorQA[x]||"In the full platform I answer from your course lessons. Please try one of the suggested questions here.","b")},900)}
+function post(){const v=$("#fp").value.trim();if(!v)return;$("#ft").insertAdjacentHTML("afterbegin",`<div class="it"><b>${esc(v)}</b><span class="mut">You · just now</span></div>`);$("#fp").value=""}
+const sk=()=>$("#rk").value.split(",").map(s=>s.trim()).filter(Boolean);
+function rr(){const p=$("#paper");p.className="paper "+$("#rt").value;p.innerHTML=`<h3>${esc($("#rn").value)}</h3><div>${esc($("#rr").value)}</div><h4>About me</h4>${esc($("#rs").value)}<h4>Skills</h4>${sk().map(esc).join(" · ")}<h4>Courses</h4>Business Communication, Professional Skills (Career Skills), Professional Skills (Team Skills)`;
+ let s=40,t=[];if($("#rs").value.length>60)s+=20;else t.push("Write a little more about yourself.");if(sk().length>=5)s+=20;else t.push("Add 5 or more skills.");if($("#rr").value)s+=20;else t.push("Add the job you want.");
+ $("#sc").textContent="Score: "+s+" out of 100.";$("#st").textContent=t.join(" ")||"No problems found."}
+function tailor(){const j=$("#jd").value.toLowerCase();if(!j){$("#st").textContent="Please paste a job advertisement first.";return}
+ const w=["communication","stakeholder","reporting","negotiation","presentation","email","customer"],h=sk().map(s=>s.toLowerCase()),a=w.filter(x=>j.includes(x)&&!h.some(y=>y.includes(x)));
+ if(a.length)$("#rk").value=sk().concat(a.map(x=>x[0].toUpperCase()+x.slice(1))).join(", ");rr();$("#st").textContent=a.length?"Added: "+a.join(", ")+".":"Your skills already match."}
+function printR(){const w=window.open("","_blank");if(!w){$("#st").textContent="Please allow pop-ups, or use your browser's print option.";return}w.document.write("<title>Resume</title><body style='font-family:sans-serif'>"+$("#paper").innerHTML);w.document.close();w.print()}
+function setTheme(t){document.documentElement.dataset.theme=t;document.querySelectorAll(".tg").forEach(b=>b.textContent=t==="dark"?"Light mode":"Dark mode");try{localStorage.setItem("th",t)}catch(e){}}
+function toggleTheme(){setTheme(document.documentElement.dataset.theme==="dark"?"light":"dark")}
+let t0="light";try{t0=localStorage.getItem("th")||"light"}catch(e){}
+setTheme(t0);
+function ANA(){
+ const avg=Math.round(C.reduce((a,c)=>a+c.p,0)/C.length),started=C.filter(c=>c.p>0).length,tot=C.reduce((a,c)=>a+c.m,0),R=52,L=2*Math.PI*R;
+ const wk=[["Mon",1.5],["Tue",2],["Wed",0.5],["Thu",2.5],["Fri",1],["Sat",3],["Sun",1.5]],top=[...C].sort((a,b)=>b.p-a.p).slice(0,6);
+ return `<div class="an"><div class="card ring"><svg viewBox="0 0 120 120" width="150" height="150" role="img" aria-label="Overall progress ${avg} percent"><circle cx="60" cy="60" r="${R}" fill="none" stroke="var(--line)" stroke-width="10"/><circle class="arc" cx="60" cy="60" r="${R}" fill="none" stroke="var(--acc)" stroke-width="10" stroke-linecap="round" stroke-dasharray="${L}" stroke-dashoffset="${L*(1-avg/100)}" transform="rotate(-90 60 60)" style="--L:${L}"/><text x="60" y="67" text-anchor="middle" font-size="26" font-weight="700" fill="currentColor" font-family="Space Grotesk,sans-serif">${avg}%</text></svg><div><h2 style="margin:0 0 4px">Overall progress</h2><p class="mut" style="margin:0">Across all ${C.length} courses</p></div></div>
+<div class="kpis"><div class="card"><b>${started}</b><span class="mut">Courses started</span></div><div class="card"><b>${tot}</b><span class="mut">Modules in total</span></div><div class="card"><b>12.0</b><span class="mut">Hours this week</span></div><div class="card"><b>82%</b><span class="mut">Average quiz score</span></div></div>
+<div class="card"><h2 style="margin-top:0">Study hours this week</h2><div class="cht">${wk.map((d,k)=>`<div class="col" style="--n:${k}" title="${d[1]} hours"><i style="height:${d[1]/3*100}%"></i><span>${d[0]}</span></div>`).join("")}</div></div>
+<div class="card"><h2 style="margin-top:0">Most progress</h2>${top.map(c=>`<div class="pc"><span>${esc(c.n)}</span><div class="bar"><span><i style="width:${c.p}%"></i></span><em>${c.p}%</em></div></div>`).join("")}</div></div>`}
+const MN=["January","February","March","April","May","June","July","August","September","October","November","December"];
+const EV={"2026-11-17":["Live class: Business Communication, 6:00 PM"],"2026-11-19":["Live class: Professional Skills (Career Skills), 5:00 PM"],"2026-11-20":["Assignment due: Client proposal email"],"2026-11-23":["Test: Professional Skills (Team Skills)"],"2026-11-28":["Health and Safety workshop"],"2026-12-3":["Live class: Business Communication, 6:00 PM"],"2026-12-10":["Final test: Business Communication"]};
+let cm={y:2026,m:10,sel:null,dir:0,anim:true};
+function CALBODY(){
+ const y=cm.y,m=cm.m,days=new Date(y,m+1,0).getDate(),off=(new Date(y,m,1).getDay()+6)%7,t=new Date(),key=d=>y+"-"+(m+1)+"-"+d,sel=cm.sel&&cm.sel.y===y&&cm.sel.m===m?cm.sel.d:null;
+ let cells="";for(let i=0;i<off;i++)cells+='<span class="dy"></span>';
+ for(let d=1;d<=days;d++){const e=EV[key(d)],isT=y===t.getFullYear()&&m===t.getMonth()&&d===t.getDate();
+  cells+=`<button class="dy${isT?" today":""}${sel===d?" sel":""}" style="--i:${off+d-1}" onclick="pick(${d})" aria-label="${d} ${MN[m]}${e?", has events":""}${isT?", today":""}">${d}${e?"<u></u>":""}</button>`}
+ const rows=sel?(EV[key(sel)]||[]).map(x=>[sel+" "+MN[m],x]):Object.keys(EV).filter(k=>k.startsWith(y+"-"+(m+1)+"-")).sort((a,b)=>a.split("-")[2]-b.split("-")[2]).flatMap(k=>EV[k].map(x=>[k.split("-")[2]+" "+MN[m],x]));
+ const items=rows.length?rows.map((r,k)=>`<div class="it evi" style="--i:${k}"><b>${r[0]}</b><span class="mut">${r[1]}</span></div>`).join(""):'<p class="mut">No events on this day.</p>';
+ const bs="min-height:44px;padding:6px 16px";
+ return `<div class="cn"><h2>${MN[m]} ${y}</h2><button class="btn alt" style="${bs}" onclick="mv(-1)">Previous</button><button class="btn alt" style="${bs}" onclick="tod()">Today</button><button class="btn alt" style="${bs}" onclick="mv(1)">Next</button></div><div class="calw"><div><div class="wk">${["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(d=>`<span>${d}</span>`).join("")}</div><div class="cg2${cm.anim?" anim":""}${cm.dir>0?" dn":cm.dir<0?" dp":""}">${cells}</div></div><div><h2 style="margin-top:0">${sel?sel+" "+MN[m]:"This month"}</h2><div class="list" id="evl">${items}</div></div></div>`}
+function CAL(){cm.anim=true;cm.dir=0;return `<h1>Calendar</h1><div id="cal">${CALBODY()}</div>`}
+function calDraw(){$("#cal").innerHTML=CALBODY()}
+function pick(d){cm.sel={y:cm.y,m:cm.m,d};cm.anim=false;cm.dir=0;calDraw()}
+function mv(n){cm.m+=n;if(cm.m<0){cm.m=11;cm.y--}if(cm.m>11){cm.m=0;cm.y++}cm.sel=null;cm.anim=true;cm.dir=n;calDraw()}
+function tod(){const t=new Date();cm={y:t.getFullYear(),m:t.getMonth(),sel:{y:t.getFullYear(),m:t.getMonth(),d:t.getDate()},dir:0,anim:true};calDraw()}
+function cnt(b){const t=b.textContent.trim();if(t.includes("/"))return;const m=t.match(/^(\D*)([\d,]*\.?\d+)(\D*)$/);if(!m)return;const dec=(m[2].split(".")[1]||"").length,end=parseFloat(m[2].replace(/,/g,"")),s=performance.now();(function f(n){const p=Math.min(1,(n-s)/1000),v=end*(1-Math.pow(1-p,3));b.textContent=m[1]+v.toLocaleString("en-IN",{minimumFractionDigits:dec,maximumFractionDigits:dec})+m[3];if(p<1)requestAnimationFrame(f)})(s)}
+function fx(){
+ if(matchMedia("(prefers-reduced-motion:reduce)").matches||!("IntersectionObserver" in window))return;
+ const hh=document.querySelector("#app .hh");if(hh&&!hh.querySelector(".w"))hh.innerHTML=hh.textContent.split(" ").map((w,i)=>`<span class="w" style="--i:${i}">${w}</span>`).join(" ");
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;io.unobserve(el);
+  if(el.classList.contains("rv")){el.classList.add("in");setTimeout(()=>el.classList.remove("rv","in"),800)}
+  if(el.matches(".stats,.tiles,.kpis"))el.querySelectorAll("b").forEach(cnt)}),{threshold:.15});
+ document.querySelectorAll("#app>h2,#app>.step,#app>.card,#app>.panel,#app .tiles>*,#app .list>*,#app>.stats").forEach(el=>{if(el.getBoundingClientRect().top>innerHeight)el.classList.add("rv");io.observe(el)});
+ document.querySelectorAll("#app .stats,#app .tiles,#app .kpis").forEach(el=>io.observe(el));
+}
+function go(){const a=$("#app");a.classList.add("enter");render();fx();clearTimeout(go.t);go.t=setTimeout(()=>a.classList.remove("enter"),1200)}
+addEventListener("hashchange",go);go();
+addEventListener("pointermove",e=>{const t=e.target.closest&&e.target.closest(".tile,.tiles>.card,.hero");if(!t)return;const r=t.getBoundingClientRect();t.style.setProperty("--mx",(e.clientX-r.left)+"px");t.style.setProperty("--my",(e.clientY-r.top)+"px")},{passive:true});
+addEventListener("scroll",()=>{const h=document.documentElement;$("#sp").style.transform="scaleX("+(h.scrollTop/((h.scrollHeight-h.clientHeight)||1))+")"},{passive:true});
+</script>
+</body>
+</html>
